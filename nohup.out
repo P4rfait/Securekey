@@ -1,0 +1,20 @@
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:15.677: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:15.680: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:16.060: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:17.823: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:20.312: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:20.662: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:23.618: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:23.635: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:23.765: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
+
+(gnome-terminal:279560): Gtk-CRITICAL **: 07:16:23.912: gtk_distribute_natural_allocation: assertion 'extra_space >= 0' failed
