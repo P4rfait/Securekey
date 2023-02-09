@@ -99,12 +99,35 @@ class Program
         Console.Write("\x1b[1m");
         Console.WriteLine("\nLa ventana es demasiado chica para continuar con la correcta ejecucion de el programa !!!\n");
         Console.ForegroundColor=ConsoleColor.White;
-        Console.WriteLine("Pulsa la tecla [Enter] para salir ó ajuste el tamaño de la ventana y pulse la tecla [Enter] para continuar\n");
+        Console.WriteLine("Pulsa la tecla [Enter] para salir ó ajuste el tamaño de la ventana y pulse la tecla [C] para continuar\n");
         Console.Write("\x1b[0m");
-        while (Console.ReadKey().Key != ConsoleKey.Enter) {}
-        if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
+        //while (Console.ReadKey().Key != ConsoleKey.Enter) {}
+        //if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
+        //{
+        //  Environment.Exit(0);
+        //}
+        while(true)
         {
-          Environment.Exit(0);
+          ConsoleKeyInfo keyInfo = Console.ReadKey();
+          if (keyInfo.Key == ConsoleKey.C)
+          {
+              if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
+              {
+                Console.Clear();
+                Console.ForegroundColor=ConsoleColor.DarkYellow;
+                Console.Write("\x1b[1m");
+                Console.WriteLine("\nEl tamaño de la ventana sigue sin ser sufiente para seguir con la ejecucion de el programa\n");
+                Console.ForegroundColor=ConsoleColor.White;
+                Console.WriteLine("Pulsa la tecla [Enter] para salir ó ajuste el tamaño de la ventana y pulse la tecla [C] para continuar\n");
+                Console.Write("\x1b[0m");
+              }
+              else{break;}
+          }
+          else if (keyInfo.Key == ConsoleKey.Enter)
+          {
+              Environment.Exit(0);
+          }
+          else{}
         }
       };
     }

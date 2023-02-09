@@ -4,7 +4,6 @@ namespace MyDecorators
     {
         public void Displaylogo(bool animation, int vel = 75)
         {                
-            
             string[] logo = {
             "███████████████████████████████████████████████████████████████████████████████",
             "",
@@ -36,7 +35,7 @@ namespace MyDecorators
             "",
             "Script creado por Tomas Armando Campos"
             };
-
+            Console.Write("\x1b[1m");
             if (Console.WindowWidth >= 80 && Console.WindowHeight >= 26 ){
                 for (int i = 0; i < logo.Length; i++)
                     {
@@ -68,7 +67,7 @@ namespace MyDecorators
                     Console.ResetColor();
                     }  
             }
-            
+        Console.Write("\x1b[0m");
         }
         public void Separator(int linesQty)
         {
