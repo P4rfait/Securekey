@@ -84,29 +84,30 @@ class Program
         Console.Clear();
         Console.ForegroundColor=ConsoleColor.DarkRed;
         Console.Write("\x1b[1m");
-        Console.WriteLine("\nLa ventana es demasiado chica para continuar con la correcta ejecucion de el programa !!!\n");
+        Console.WriteLine("La ventana es demasiado chica para continuar con la correcta ejecucion de el programa!!!\n");
         Console.ForegroundColor=ConsoleColor.White;
         Console.WriteLine("Pulsa la tecla [Enter] para salir ó ajuste el tamaño de la ventana y pulse la tecla [C] para continuar\n");
         Console.Write("\x1b[0m");
         while(true)
         {
           ConsoleKeyInfo keyInfo = Console.ReadKey();
-          if (keyInfo.Key == ConsoleKey.C)
+          if (keyInfo.Key == ConsoleKey.Enter)
           {
               if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
               {
                 Console.Clear();
                 Console.ForegroundColor=ConsoleColor.DarkYellow;
                 Console.Write("\x1b[1m");
-                Console.WriteLine("\nEl tamaño de la ventana sigue sin ser sufiente para seguir con la ejecucion de el programa\n");
+                Console.WriteLine("El tamaño de la ventana sigue sin ser sufiente para seguir con la ejecucion de el programa");
                 Console.ForegroundColor=ConsoleColor.White;
-                Console.WriteLine("Pulsa la tecla [Enter] para salir ó ajuste el tamaño de la ventana y pulse la tecla [C] para continuar\n");
+                Console.WriteLine("\nPulsa la tecla [Esc] para salir ó ajuste el tamaño de la ventana y pulse la tecla [Enter] para continuar\n");
                 Console.Write("\x1b[0m");
               }
               else{break;}
           }
-          else if (keyInfo.Key == ConsoleKey.Enter)
+          else if (keyInfo.Key == ConsoleKey.Escape)
           {
+              Console.Clear();
               Environment.Exit(0);
           }
           else{}
