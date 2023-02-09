@@ -16,18 +16,11 @@ class Program
       Console.Write("\x1b[0m");
       return;
     };
-
-    //Llamando Decorators como Decorator
     ClaseDecorators Decorador = new ClaseDecorators();
-
     Console.Clear();
     Console.CursorVisible = false;
-
     Decorador.Displaylogo(true);
-    
     Console.CursorVisible = true;
-
-
     bool isValidInput = false;
     while (!isValidInput)
     {
@@ -41,19 +34,14 @@ class Program
       Console.ForegroundColor=ConsoleColor.DarkGreen;
       Console.WriteLine("Que accion desea realizar?:");
       Console.Write("\x1b[0m");
-
-      
       Console.ForegroundColor=ConsoleColor.White;
       Console.WriteLine("(1) Menu de generacion de contraseña");
       Console.WriteLine("(2) Acerca de & Créditos");
       Console.ResetColor();
-
       Console.ForegroundColor=ConsoleColor.Red;
       Console.WriteLine("(3) Salir");
       Console.ResetColor();
-
       Decorador.Separator(5);
-      
       Console.ForegroundColor=ConsoleColor.DarkGreen;
       Console.Write(">");
       Console.ResetColor();
@@ -89,7 +77,6 @@ class Program
             break;
       }
     }
-
     static void checkwinsize()
     {
       if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
@@ -101,11 +88,6 @@ class Program
         Console.ForegroundColor=ConsoleColor.White;
         Console.WriteLine("Pulsa la tecla [Enter] para salir ó ajuste el tamaño de la ventana y pulse la tecla [C] para continuar\n");
         Console.Write("\x1b[0m");
-        //while (Console.ReadKey().Key != ConsoleKey.Enter) {}
-        //if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
-        //{
-        //  Environment.Exit(0);
-        //}
         while(true)
         {
           ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -131,6 +113,5 @@ class Program
         }
       };
     }
-
   }
 }
