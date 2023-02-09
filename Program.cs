@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-//Importo mi archivo de
 using MyDecorators;
 
 namespace passgen;
@@ -17,7 +16,7 @@ class Program
       return;
     };
     MainMenu();
-    
+
     static void MainMenu()
     {
       ClaseDecorators Decorador = new ClaseDecorators();
