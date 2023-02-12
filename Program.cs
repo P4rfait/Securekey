@@ -1,25 +1,37 @@
 ﻿using System;
 using System.Threading;
-using MyDecorators;
 
-namespace passgen;
-class Program
+using MyDecorators;
+using Credits;
+using CheckWinSize;
+
+namespace Program;
+
+public class MainClass
 {
-  static void Main(string[] args)
+  public static void Main(string[] args)
   {
+    ClaseMainMenu menu = new ClaseMainMenu();
     if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
     {
-      Console.ForegroundColor=ConsoleColor.DarkRed;
       Console.Write("\x1b[1m");
+      Console.ForegroundColor=ConsoleColor.DarkRed;
       Console.WriteLine("\nLa ventana es demasiado chica para ejecutar el programa\n");
       Console.Write("\x1b[0m");
       return;
     };
-    MainMenu();
+    menu.MainMenu();
+  }
+}
 
-    static void MainMenu()
+public class ClaseMainMenu
+{
+    public void MainMenu()
     {
       ClaseDecorators Decorador = new ClaseDecorators();
+      ClaseCredits Creditos = new ClaseCredits();
+      ClaseCheckWinSize CheckWinSize = new ClaseCheckWinSize();
+
       Console.Clear();
       Console.CursorVisible = false;
       Decorador.Displaylogo(true);
@@ -27,7 +39,7 @@ class Program
       bool isValidInput = false;
       while (!isValidInput)
       {
-        checkwinsize();
+        CheckWinSize.checkwinsize();
         Console.Clear();
         Decorador.Displaylogo(false);
         Decorador.Separator(5);
@@ -39,79 +51,60 @@ class Program
         Decorador.Separator(5);
         Console.WriteLine("(1) Menu de generacion de contraseña");
         Console.WriteLine("(2) Acerca de & Créditos");
-        Console.ResetColor();
         Console.ForegroundColor=ConsoleColor.Red;
         Console.WriteLine("(3) Salir");
         Console.ResetColor();
         Decorador.Separator(5);
-        Console.ForegroundColor=ConsoleColor.DarkGreen;
-        Console.Write(">");
+        Console.Write("> ");
         Console.ResetColor();
         Console.CursorVisible = true;
+        
         string? input = Console.ReadLine();
-        switch (input)
+        if (Int16.TryParse(input, out short result))
         {
-          case "1":
-          checkwinsize();
-              isValidInput = true;
-              Console.WriteLine("Has seleccionado la opción 1");
-              Console.ReadKey();
-              break;
-          case "2":
-          checkwinsize();
-              isValidInput = true;
-              Console.WriteLine("Has seleccionado la opción 2");
-              Console.ReadKey();
-              break;
-          case "3":
-              Console.WriteLine("Saliendo del programa");
-              Console.ReadKey();
-              return;
-          default:
-              Console.CursorVisible = false;
-              Console.Write("\x1b[1m");
-              Console.ForegroundColor=ConsoleColor.DarkRed;
-              Console.WriteLine("\nOpcion no valida\n");
-              Console.ForegroundColor=ConsoleColor.White;
-              Console.WriteLine("Pulsa la tecla [Enter] para continuar...");
-              Console.Write("\x1b[0m");
-              while (Console.ReadKey().Key != ConsoleKey.Enter) {}
-              break;
+          short selecton = result;
+          switch (selecton)
+          {
+            case 1:
+            CheckWinSize.checkwinsize();
+                isValidInput = true;
+                Console.WriteLine("Has seleccionado la opción 1");
+                Console.ReadKey();
+                break;
+            case 2:
+            CheckWinSize.checkwinsize();
+                isValidInput = true;
+                Creditos.PrintCredits();
+                Console.ReadKey();
+                break;
+            case 3:
+                Console.WriteLine("Saliendo del programa");
+                Console.Clear();
+                Environment.Exit(0);
+                return;
+            default:
+                Console.CursorVisible = false;
+                Console.Write("\x1b[1m");
+                Console.ForegroundColor=ConsoleColor.DarkRed;
+                Console.WriteLine("\nEl número ingresado no corresponde a ninguna opción.\n");
+                Console.ForegroundColor=ConsoleColor.White;
+                Console.WriteLine("Pulsa la tecla [Enter] para continuar...");
+                Console.Write("\x1b[0m");
+                while (Console.ReadKey().Key != ConsoleKey.Enter) {}
+                break;
+          }
+        }
+        else
+        {
+          Console.CursorVisible = false;
+          Console.Write("\x1b[1m");
+          Console.ForegroundColor=ConsoleColor.DarkRed;
+          Console.WriteLine("\nLa entrada no es un valor numérico válido.\n");
+          Console.ForegroundColor=ConsoleColor.White;
+          Console.WriteLine("Pulsa la tecla [Enter] para continuar...");
+          Console.Write("\x1b[0m");
+          while (Console.ReadKey().Key != ConsoleKey.Enter) {}
         }
       }
-    }
-
-    static void checkwinsize()
-    {
-      if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
-      {
-        Console.Clear();
-        Console.ForegroundColor=ConsoleColor.DarkRed;
-        Console.Write("\x1b[1m");
-        Console.WriteLine("La ventana es demasiado chica para continuar con la correcta ejecucion de el programa!!!\n");
-        Console.ForegroundColor=ConsoleColor.White;
-        Console.WriteLine("Pulsa las teclas [Ctrl + C] para salir ó ajuste el tamaño de la ventana y pulse la tecla [Enter] para continuar\n");
-        Console.Write("\x1b[0m");
-        while(true)
-        {
-          ConsoleKeyInfo keyInfo = Console.ReadKey();
-          if (keyInfo.Key == ConsoleKey.Enter)
-          {
-              if (Console.WindowWidth < 45 || Console.WindowHeight < 15)
-              {
-                Console.Clear();
-                Console.ForegroundColor=ConsoleColor.DarkYellow;
-                Console.Write("\x1b[1m");
-                Console.WriteLine("El tamaño de la ventana sigue sin ser sufiente para seguir con la ejecucion de el programa");
-                Console.ForegroundColor=ConsoleColor.White;
-                Console.WriteLine("\nPulsa las teclas [Ctrl + C] para salir ó ajuste el tamaño de la ventana y pulse la tecla [Enter] para continuar\n");
-                Console.Write("\x1b[0m");
-              }
-              else{break;}
-          }
-          else{}
-        }
-      };
-    }
-  }
+    }    
 }
