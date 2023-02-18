@@ -1,6 +1,7 @@
 using CheckWinSize;
 using MyDecorators;
 using Program;
+using TitleScreen;
 
 namespace Credits{
 	public class ClaseCredits
