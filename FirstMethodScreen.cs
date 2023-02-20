@@ -1,40 +1,50 @@
 using MyDecorators;
-using Credits;
 using CheckWinSize;
 using MethodSelecctionScreen;
 
-namespace TitleScreen
+
+namespace FirstMethodScreen
 {
-	public class ClaseTitleMenu
+	public class ClaseFirstMethodScreen
 	{
-		public void TitleMenu()
+		public void MethodMenu()
 		{
 			ClaseDecorators Decorador = new ClaseDecorators();
-			ClaseCredits Creditos = new ClaseCredits();
 			ClaseCheckWinSize CheckWinSize = new ClaseCheckWinSize();
-			ClaseMethodSelecctionScreen GenerationMenu = new ClaseMethodSelecctionScreen();
+			ClaseMethodSelecctionScreen MethodSelecctionScreen = new ClaseMethodSelecctionScreen();
 
 			Console.Clear();
-			Console.CursorVisible = false;
-			Decorador.Displaylogo(true);
-			Console.CursorVisible = true;
 			bool isValidInput = false;
 			while (!isValidInput)
 			{
 				CheckWinSize.checkwinsize();
 				Console.Clear();
-				Decorador.Displaylogo(false);
-				Decorador.Separator(5);
+				Decorador.Separator(10);
+				Console.ForegroundColor=ConsoleColor.Cyan;
+				Console.WriteLine("Generacion basada en parametros personalizables");
+				Console.ResetColor();
+				Decorador.Separator(10);
+				Console.WriteLine("");
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.ResetColor();
+				Console.WriteLine("Cantidad de caracteres []");
+				Console.WriteLine("Mayúsculas []");
+				Console.WriteLine("Minúsculas []");
+				Console.WriteLine("Números []");
+				Console.WriteLine("");
+				Decorador.Separator(10);
 				Console.Write("\x1b[1m");
 				Console.ForegroundColor=ConsoleColor.DarkGreen;
 				Console.WriteLine("Que accion desea realizar?:");
 				Console.Write("\x1b[0m");
 				Console.ForegroundColor=ConsoleColor.White;
+				Decorador.Separator(10);
+				Console.WriteLine("(1) Generar");
+				Console.WriteLine("(2) Configurar");
 				Decorador.Separator(5);
-				Console.WriteLine("(1) Menu de generacion de contraseña");
-				Console.WriteLine("(2) Acerca de & Créditos");
+				Console.WriteLine("(3) Regresar");
 				Console.ForegroundColor=ConsoleColor.Red;
-				Console.WriteLine("(3) Salir");
+				Console.WriteLine("(4) Salir");
 				Console.ResetColor();
 				Decorador.Separator(5);
 				Console.Write("> ");
@@ -48,18 +58,24 @@ namespace TitleScreen
 					switch (selecton)
 					{
 						case 1:
-						CheckWinSize.checkwinsize();
+							CheckWinSize.checkwinsize();
 							isValidInput = true;
-							GenerationMenu.MethodMenu();
+							Console.WriteLine("Has seleccionado la Generacion basada en paramentros");
 							Console.ReadKey();
 							break;
 						case 2:
-						CheckWinSize.checkwinsize();
+							CheckWinSize.checkwinsize();
 							isValidInput = true;
-							Creditos.PrintCredits();
+							Console.WriteLine("Has seleccionada la generacion basada en texto");
 							Console.ReadKey();
 							break;
 						case 3:
+							CheckWinSize.checkwinsize();
+							isValidInput = true;
+							MethodSelecctionScreen.MethodMenu();
+							Console.ReadKey();
+							break;
+						case 4:
 							Console.WriteLine("Saliendo del programa");
 							Console.Clear();
 							Environment.Exit(0);
@@ -86,8 +102,9 @@ namespace TitleScreen
 					Console.WriteLine("Pulsa la tecla [Enter] para continuar...");
 					Console.Write("\x1b[0m");
 					while (Console.ReadKey().Key != ConsoleKey.Enter) {}
+		
 				}
 			}
-		}    
+		}
 	}
 }

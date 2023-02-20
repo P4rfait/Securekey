@@ -10,7 +10,7 @@ namespace Credits{
 		{
 		ClaseDecorators Decorador = new ClaseDecorators();
 		ClaseCheckWinSize CheckWinSize = new ClaseCheckWinSize();
-    	ClaseMainMenu mainMenu = new ClaseMainMenu();
+    	ClaseTitleMenu TitleMenu = new ClaseTitleMenu();
 
 
 		Console.Clear();
@@ -20,6 +20,7 @@ namespace Credits{
 		Decorador.Separator(5);
 		Decorador.Displaycredits(true);
 		Console.CursorVisible = true;
+		
 		bool isValidInput = false;
 		while (!isValidInput)
 		{
@@ -54,7 +55,7 @@ namespace Credits{
 				case 1:
 					CheckWinSize.checkwinsize();
 					isValidInput = true;
-					mainMenu.MainMenu();
+					TitleMenu.TitleMenu();
 					Console.ReadKey();
 					break;
 				case 2:

@@ -93,7 +93,6 @@ namespace MyDecorators
                     {
                         Thread.Sleep(vel);
                     }
-                    //Console.ForegroundColor=ConsoleColor.Yellow;
                     Console.WriteLine(logo[i]);
                     Console.ResetColor();
                 }
@@ -104,6 +103,12 @@ namespace MyDecorators
         {
             Console.ForegroundColor=ConsoleColor.DarkCyan;
             Console.WriteLine(new string('-', linesQty));
+            Console.ResetColor();
+        }
+        public void Separator2(int linesQty)
+        {
+            Console.ForegroundColor=ConsoleColor.Yellow;
+            Console.WriteLine(new string('*', linesQty));
             Console.ResetColor();
         }
     }
