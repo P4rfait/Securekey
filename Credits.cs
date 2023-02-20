@@ -59,7 +59,6 @@ namespace Credits{
 					Console.ReadKey();
 					break;
 				case 2:
-					Console.WriteLine("Saliendo del programa");
 					Console.Clear();
 					Environment.Exit(0);
 					return;

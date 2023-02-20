@@ -60,7 +60,6 @@ namespace TitleScreen
 							Console.ReadKey();
 							break;
 						case 3:
-							Console.WriteLine("Saliendo del programa");
 							Console.Clear();
 							Environment.Exit(0);
 							return;

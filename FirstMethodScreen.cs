@@ -60,13 +60,13 @@ namespace FirstMethodScreen
 						case 1:
 							CheckWinSize.checkwinsize();
 							isValidInput = true;
-							Console.WriteLine("Has seleccionado la Generacion basada en paramentros");
+							Console.WriteLine("Has seleccionado Generar");
 							Console.ReadKey();
 							break;
 						case 2:
 							CheckWinSize.checkwinsize();
 							isValidInput = true;
-							Console.WriteLine("Has seleccionada la generacion basada en texto");
+							Console.WriteLine("Has seleccionado configurar");
 							Console.ReadKey();
 							break;
 						case 3:
@@ -76,7 +76,6 @@ namespace FirstMethodScreen
 							Console.ReadKey();
 							break;
 						case 4:
-							Console.WriteLine("Saliendo del programa");
 							Console.Clear();
 							Environment.Exit(0);
 							return;

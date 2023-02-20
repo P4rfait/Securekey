@@ -63,7 +63,6 @@ namespace MethodSelecctionScreen
 							Console.ReadKey();
 							break;
 						case 4:
-							Console.WriteLine("Saliendo del programa");
 							Console.Clear();
 							Environment.Exit(0);
 							return;
