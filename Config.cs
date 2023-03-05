@@ -8,13 +8,15 @@ namespace Config
 		string fileName = "config";
 		
 		short def_length = 16;
-		bool def_capital = true;
+		bool def_upcase = true;
 		bool def_lowercase = true;
 		bool def_numbers = true;
+
 		public short length;
 		public bool numbers;
 		public bool lowercase;
-		public bool capital;
+		public bool upcase;
+
 		public void MakeConfigFile()
 		{
 			if (!File.Exists(fileName))
@@ -22,67 +24,90 @@ namespace Config
 					using (StreamWriter writer = new StreamWriter(fileName))
 					{
 						writer.WriteLine($"length: {def_length}");
-						writer.WriteLine($"capital: {def_capital}");
+						writer.WriteLine($"upcase: {def_upcase}");
 						writer.WriteLine($"lowercase: {def_lowercase}");
 						writer.WriteLine($"numbers: {def_numbers}");
 					}
 				}
 		}
-		public void GetConfigFileData()
+		public void GetConfigFileDataAndRepair()
 		{
 			ClaseDecorators Decorador = new ClaseDecorators();
-			bool ErrorToParse = false;
+			bool ErrorInValues = false;
+			bool ErrorInVarNames = false;
+			bool ErrorInFormat = false;
 			string[] lines = File.ReadAllLines(fileName);
 			foreach(string line in lines)
 			{
 				string[] parts = line.Split(":");
-				string name = parts[0].Trim();
-				string value = parts[1].Trim();
-				switch(name)
+				if (parts.Length == 2)
+					{		
+						string name = parts[0].Trim();
+						string value = parts[1].Trim();
+						switch(name)
+						{
+							case "length":
+								if (Int16.TryParse(value, out length))
+								{
+									if (length < 8)
+									{
+										length =def_length;
+										ErrorInValues = true;
+									}
+								}
+								else
+								{
+									ErrorInValues = true;
+								}
+								break;
+							case "numbers":
+								if (bool.TryParse(value, out numbers)){}
+								else
+								{
+									ErrorInValues = true;
+								}
+								break;
+							case "lowercase":
+								if (bool.TryParse(value, out lowercase)){}
+								else{
+									ErrorInValues = true;
+								}
+								break;						
+							case "upcase":
+								if(bool.TryParse(value, out upcase)){}
+								else{
+									ErrorInValues = true;
+								}
+								break;	
+							default:
+								ErrorInVarNames = true;
+								break;
+						}
+				}
+				else
 				{
-					case "length":
-						if (Int16.TryParse(value, out length)){}
-						else
-						{
-							length = def_length;
-							ErrorToParse = true;
-						}
-						break;
-					case "numbers":
-						if (bool.TryParse(value, out numbers)){}
-						else
-						{
-							numbers = def_numbers;
-							ErrorToParse = true;
-						}
-						break;
-					case "lowercase":
-						if (bool.TryParse(value, out lowercase)){}
-						else{
-							lowercase = def_lowercase;
-							ErrorToParse = true;
-						}
-						break;						
-					case "capital":
-						if(bool.TryParse(value, out capital)){}
-						else{
-							capital = def_capital;
-							ErrorToParse = true;
-						}
-						break;	
+					ErrorInFormat = true;
 				}
 			}
-			if (ErrorToParse == true)
+
+							
+			if (ErrorInValues == true || ErrorInVarNames == true || ErrorInFormat == true)
 			{
+				length = def_length;
+				numbers = def_numbers;
+				lowercase = def_lowercase;
+				upcase = def_upcase;
+
 				Decorador.Separator2(5);
 				Console.ForegroundColor = ConsoleColor.DarkYellow;
-				Console.WriteLine("A ocurrido un error con al menos un valor, se a definido su valor por defecto, y restaurado la integridad de los archivos");
+				Console.WriteLine("A ocurrido un error al cargar la configuracion guardada, se a definido su valor por defecto, y restaurado la integridad de los archivos.");
 				Decorador.Separator2(5);
+				Console.WriteLine();
 				Console.ResetColor();
 				using (StreamWriter writer = new StreamWriter(fileName))
 				{
 					writer.WriteLine($"length: {def_length}");
-					writer.WriteLine($"capital: {def_capital}");
+					writer.WriteLine($"upcase: {def_upcase}");
 					writer.WriteLine($"lowercase: {def_lowercase}");
 					writer.WriteLine($"numbers: {def_numbers}");
 				}

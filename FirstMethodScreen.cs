@@ -28,7 +28,7 @@ namespace FirstMethodScreen
 				Console.WriteLine("");
 				Console.ForegroundColor = ConsoleColor.Yellow;
 				Console.ResetColor();
-				Config.GetConfigFileData();
+				Config.GetConfigFileDataAndRepair();
 
 
 				//Imprimir cantidad de caracteres
@@ -37,14 +37,12 @@ namespace FirstMethodScreen
 				Console.Write(Config.length);
 				Console.Write("\x1b[0m");
 				Console.WriteLine("]");
-				
-				
 
 				//Imprimir estado de mayusculas
 				Console.Write("Mayúsculas [");
-				Console.ForegroundColor = Config.capital ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed;
+				Console.ForegroundColor = Config.upcase ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed;
 				Console.Write("\x1b[1m");
-				Console.Write(Config.capital? "Si":"No");
+				Console.Write(Config.upcase? "Si":"No");
 				Console.Write("\x1b[0m");
 				Console.ResetColor();
 				Console.WriteLine("]");
