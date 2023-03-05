@@ -1,7 +1,7 @@
 using MyDecorators;
 using CheckWinSize;
 using MethodSelecctionScreen;
-
+using Config;
 
 namespace FirstMethodScreen
 {
@@ -12,6 +12,7 @@ namespace FirstMethodScreen
 			ClaseDecorators Decorador = new ClaseDecorators();
 			ClaseCheckWinSize CheckWinSize = new ClaseCheckWinSize();
 			ClaseMethodSelecctionScreen MethodSelecctionScreen = new ClaseMethodSelecctionScreen();
+			ClaseConfig Config = new ClaseConfig();
 
 			Console.Clear();
 			bool isValidInput = false;
@@ -27,10 +28,45 @@ namespace FirstMethodScreen
 				Console.WriteLine("");
 				Console.ForegroundColor = ConsoleColor.Yellow;
 				Console.ResetColor();
-				Console.WriteLine("Cantidad de caracteres []");
-				Console.WriteLine("Mayúsculas []");
-				Console.WriteLine("Minúsculas []");
-				Console.WriteLine("Números []");
+				Config.GetConfigFileData();
+
+
+				//Imprimir cantidad de caracteres
+				Console.Write("Cantidad de caracteres [");
+				Console.Write("\x1b[1m");
+				Console.Write(Config.length);
+				Console.Write("\x1b[0m");
+				Console.WriteLine("]");
+				
+				
+
+				//Imprimir estado de mayusculas
+				Console.Write("Mayúsculas [");
+				Console.ForegroundColor = Config.capital ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed;
+				Console.Write("\x1b[1m");
+				Console.Write(Config.capital? "Si":"No");
+				Console.Write("\x1b[0m");
+				Console.ResetColor();
+				Console.WriteLine("]");
+				
+				//Imprimir estado de Minusculas
+				Console.Write("Minúsculas [");
+				Console.ForegroundColor = Config.lowercase ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed;
+				Console.Write("\x1b[1m");
+				Console.Write(Config.lowercase? "Si":"No");
+				Console.Write("\x1b[0m");
+				Console.ResetColor();
+				Console.WriteLine("]");
+
+				//Imprimir estado de Numeros
+				Console.Write("Números [");
+				Console.ForegroundColor = Config.numbers ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed;
+				Console.Write("\x1b[1m");
+				Console.Write(Config.numbers? "Si":"No");
+				Console.Write("\x1b[0m");
+				Console.ResetColor();
+				Console.WriteLine("]");
+
 				Console.WriteLine("");
 				Decorador.Separator(10);
 				Console.Write("\x1b[1m");

@@ -2,6 +2,7 @@ using MyDecorators;
 using CheckWinSize;
 using TitleScreen;
 using FirstMethodScreen;
+using Config;
 
 namespace MethodSelecctionScreen
 {
@@ -12,6 +13,7 @@ namespace MethodSelecctionScreen
 			ClaseCheckWinSize CheckWinSize = new ClaseCheckWinSize();
 			ClaseTitleMenu TitleMenu = new ClaseTitleMenu();
 			ClaseFirstMethodScreen FirstMethodScreen = new ClaseFirstMethodScreen();
+			ClaseConfig Config = new ClaseConfig();
 
 			Console.Clear();
 			bool isValidInput = false;
